@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "go-farm-pos-frontend",
+  "description": "",
+  "appid": "wx5db5b55eca56b771",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

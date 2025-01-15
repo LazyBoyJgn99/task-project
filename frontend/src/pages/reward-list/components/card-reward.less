@@ -1,0 +1,141 @@
+.reward-list-card-reward {
+  display: flex;
+  align-items: stretch;
+  border: 6px solid #a3d3b0;
+  border-radius: 12px;
+  position: relative;
+
+  .reward-left {
+    padding: 4px 4px 0 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebf6ef;
+    color: #358f58;
+    font-size: 12px;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 8px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .reward-main {
+    flex: 1;
+    border-right: 1px dashed #d9d9d9;
+    padding: 12px 8px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .reward-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .reward-description {
+      font-size: 12px;
+      color: #888;
+      margin: 4px 0;
+    }
+
+    .reward-discount {
+      font-size: 20px;
+      color: #ff5a00;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+  }
+
+  .reward-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+
+    .ball-left-top {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -5px;
+      left: -5px;
+      border-radius: 50%;
+      background-color: #a3d3b0;
+    }
+    .ball-left-bottom {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      bottom: -5px;
+      left: -5px;
+      border-radius: 50%;
+      background-color: #a3d3b0;
+    }
+
+    .reward-button {
+      background-color: transparent;
+      border: 1px solid #006241;
+      color: #006241;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .reward-used {
+      color: #888;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .reward-not-start {
+      color: #006241;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .reward-expiry {
+      font-size: 10px;
+      color: #888;
+    }
+
+    .reward-expiry + .reward-expiry {
+      margin-top: 2px;
+    }
+  }
+}
+
+.reward-list-card-reward + .reward-list-card-reward {
+  margin-top: 12px;
+}
+
+.card-reward-isused {
+  border: 6px solid #dadada;
+
+  .reward-right .ball-left-top {
+    background-color: #dadada;
+  }
+
+  .reward-right .ball-left-bottom {
+    background-color: #dadada;
+  }
+
+  .reward-left {
+    background-color: #f5f5f5;
+    color: #888;
+  }
+
+  .reward-main .reward-title {
+    color: #888;
+  }
+
+  .reward-main .reward-discount {
+    color: #888;
+  }
+}

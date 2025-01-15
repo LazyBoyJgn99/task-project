@@ -1,0 +1,61 @@
+@import './styles/clasue-detail.less';
+
+@form-font-size: 15px;
+@default-box-shadow: 0px 1px 7px 0px #edeef1;
+@cell-border-radius: 10px;
+
+page {
+  height: 100vh;
+  width: 375px;
+  overflow: hidden;
+  touch-action: none;
+
+  .nut-form-item-label {
+    font-weight: 500 !important;
+    font-size: @form-font-size !important;
+  }
+
+  .nut-form-item-body {
+    font-size: @form-font-size !important;
+  }
+
+  .nut-cell-group {
+    box-shadow: var(--nutui-cell-box-shadow);
+  }
+
+  .nut-empty-title {
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-top: 16rpx;
+  }
+
+  .nut-empty-description {
+    font-size: 28rpx;
+    margin-top: 20rpx;
+  }
+
+  :root {
+    --nutui-color-primary: #006241;
+    --nutui-color-primary-stop-1: #006241;
+    --nutui-color-primary-stop-2: #006241;
+    --nutui-color-primary-disabled: #bfbfbf;
+    --nutui-form-item-label-width: 40px;
+    --nutui-cell-padding: 20px 16px;
+    --nutui-button-default-height: 48px;
+    --nutui-cell-title-font-size: @form-font-size;
+    --nutui-input-font-size: @form-font-size;
+    --nutui-button-default-font-size: @form-font-size;
+    --nutui-cell-border-radius: @cell-border-radius;
+    --nutui-cell-box-shadow: @default-box-shadow;
+    --nutui-picker-item-height: 48px;
+    --nutui-font-size-3: 16px;
+
+    --app-color-primary: #006241;
+    --app-gray-text-1: #595959;
+    --app-gray-text-2: #9b9b9b;
+    --app-gray-text-3: #949494;
+    --app-gray-tabbar-icon: #d4d4d4;
+    --app-gray-tabbar-text: #808080;
+    --app-background-color-1: #f4f4f4;
+  }
+}

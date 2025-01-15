@@ -1,0 +1,100 @@
+.card-vip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+
+  .vip-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .vip-info {
+    position: relative;
+    display: flex;
+    height: 100%;
+
+    .left {
+      position: relative;
+      width: 50%;
+      padding: 16px 0 0 26px;
+
+      .level {
+        color: #57697b;
+        font-size: 54px;
+        line-height: 60px;
+        font-weight: 500;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .level-no-reached {
+        position: absolute;
+        bottom: 28px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #5b656e;
+      }
+
+      .level-name {
+        margin-top: 8px;
+        color: #5b656e;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .level-points {
+        position: absolute;
+        bottom: 16px;
+        width: 100px;
+
+        .points-wrap {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+
+          .points-icon {
+            width: 16px;
+            height: 16px;
+          }
+
+          .points-text {
+            font-size: 12px;
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+
+    .right {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-right: 12px;
+
+      .vip-pic {
+        width: 127px;
+        height: 139px;
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  .current-level {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 86px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #126d51;
+    border-top-left-radius: 16px;
+    color: white;
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,94 @@
+.user-update {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #f7f7f7;
+  padding: 16px;
+
+  .title {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--app-gray-text-1);
+  }
+
+  .user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 0;
+    margin-top: 0;
+    margin-bottom: 24px;
+
+    .avatar-box {
+      width: 78px;
+      height: 78px;
+      border: var(--nutui-color-primary) 1px solid;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--nutui-cell-box-shadow);
+
+      .nut-avatar {
+        width: 144rpx;
+        height: 144rpx;
+
+        text {
+          font-size: 68rpx;
+        }
+      }
+    }
+  }
+
+  .nut-icon-ArrowRight {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nut-cell-group-wrap {
+    margin: 0;
+  }
+
+  .button-submit {
+    margin-top: 32px;
+    border-radius: 6px;
+  }
+
+  .birthday-input {
+    width: 100%;
+    position: relative;
+  }
+
+  .birthday-input::after {
+    content: '填写后不可修改';
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    color: var(--app-gray-text-2);
+  }
+
+  .phone-input::after {
+    content: '不可修改';
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    color: var(--app-gray-text-2);
+  }
+
+  .nut-cell {
+    padding: 20px 24px 20px 16px;
+    display: flex;
+    align-items: center;
+
+    input {
+      height: 30rpx;
+    }
+  }
+
+  .nutui-cell--clickable {
+    .nut-cell-divider {
+      display: none;
+    }
+  }
+}

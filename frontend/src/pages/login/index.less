@@ -1,0 +1,75 @@
+.login {
+  width: 375px;
+  height: 100%;
+  position: relative;
+
+  .nut-navbar {
+    background-color: transparent;
+  }
+
+  .title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+
+    .login-title {
+      width: 208px;
+      height: 57px;
+    }
+
+    .title-text-1 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 32px;
+    }
+
+    .title-text-2 {
+      font-size: 13px;
+      color: var(--app-gray-text-3);
+      margin-top: 8px;
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .nut-button {
+      width: 640rpx;
+      height: 96rpx;
+      line-height: 96rpx;
+      font-size: 32rpx;
+      margin-top: 20px;
+      border-radius: 6px;
+
+      view {
+        height: 96rpx;
+        line-height: 96rpx;
+      }
+    }
+  }
+
+  .clause {
+    position: absolute;
+    bottom: 32px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--nutui-color-primary);
+
+    --nut-icon-width: 14px;
+
+    .nut-checkbox-label {
+      color: var(--app-gray-text-1);
+    }
+
+    .clause-link {
+      color: var(--nutui-color-primary);
+    }
+  }
+}

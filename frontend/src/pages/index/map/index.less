@@ -1,0 +1,43 @@
+@background-color: #fff;
+
+.map {
+  width: 375px;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background-color: @background-color;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+  .map-image {
+    flex: 1;
+    padding-bottom: 28px;
+
+    .nut-image {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    image {
+      width: 375px;
+      height: 500px;
+    }
+  }
+
+  .nut-navbar {
+    background-color: @background-color;
+    margin-bottom: 0;
+  }
+
+  .nut-img-error {
+    background-color: @background-color;
+  }
+
+  .nut-img-loading {
+    background-color: @background-color;
+  }
+}

@@ -1,0 +1,240 @@
+.order-detail {
+  width: 375px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  background: linear-gradient(to bottom, #eefcf8, #ffffff);
+  overflow-y: hidden;
+
+  .content {
+    padding: 16px;
+    height: 100%;
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+
+  .nav-bar {
+    flex-shrink: 0;
+    flex-grow: 1;
+
+    .nut-navbar {
+      background-color: transparent;
+      margin-bottom: 0;
+    }
+  }
+
+  .reserve-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 0 8px;
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 18px;
+
+      .nut-avatar {
+        margin-right: 12px;
+        font-weight: 400;
+        background-color: #888 !important;
+      }
+    }
+
+    image {
+      width: 83px;
+      height: 23px;
+    }
+  }
+
+  .nut-cell-left {
+    flex: initial;
+  }
+
+  .order-box {
+    width: 100%;
+
+    .order-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .order-items:last-child {
+      .order-item:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+
+    .order-items {
+      padding-top: 12px;
+
+      .order-item:last-child {
+        padding-bottom: 12px;
+        border-bottom: 1px solid #e9e9e9;
+      }
+
+      .order-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .order-item-title {
+          display: flex;
+          align-items: center;
+          line-height: 20px;
+
+          .title {
+            width: 120px;
+            font-weight: 600;
+          }
+
+          .nut-icon {
+            margin-right: 8px;
+            display: block;
+          }
+
+          .date {
+            margin-left: 8px;
+            font-size: 12px;
+            color: var(--app-gray-text-1);
+          }
+
+          .number {
+            margin-left: 8px;
+          }
+        }
+
+        .button-refund {
+          color: var(--app-color-primary);
+        }
+      }
+    }
+  }
+
+  .nut-cell {
+    padding: 8px 20px;
+  }
+
+  .nut-cell-group {
+    padding: 4px 0;
+    box-shadow: none;
+    border-radius: var(--nutui-cell-border-radius);
+  }
+
+  .nut-cell-group-wrap {
+    padding: 8px 0;
+    margin: 4px 0;
+  }
+
+  .text-1 {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .text-2 {
+    font-size: 14px;
+    color: var(--app-gray-text-1);
+  }
+
+  .text-3 {
+    font-size: 14px;
+    color: var(--app-gray-text-2);
+  }
+
+  .text-4 {
+    font-size: 14px;
+    color: var(--app-color-primary);
+    font-weight: 600;
+  }
+
+  .text-5 {
+    font-size: 12px;
+    color: var(--app-gray-text-1);
+  }
+
+  .text-6 {
+    font-size: 12px;
+    color: var(--app-gray-text-2);
+  }
+
+  .total-price {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+
+    .nut-button {
+      height: 80rpx;
+    }
+  }
+
+  .bottom-box {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    padding: 12px 16px 0 16px;
+    z-index: 10;
+    box-sizing: border-box;
+
+    .nut-button {
+      min-width: 96px;
+    }
+
+    .empty {
+      width: 100%;
+      height: 34px;
+    }
+  }
+
+  .empty {
+    width: 100%;
+    height: 92px;
+  }
+
+  .refund-item-header {
+    display: flex;
+    align-items: center;
+
+    .refund-item-header-text {
+      margin-left: 12px;
+      font-weight: 600;
+    }
+  }
+
+  .nut-popup {
+    overflow-y: scroll;
+
+    .nut-cell-group-wrap {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .nut-popup .nut-cell {
+    padding: 12px 20px;
+
+    .nut-cell-description {
+      margin-top: 4px;
+    }
+  }
+
+  .refund-wrapper {
+    max-height: calc(83vh - 60px);
+    overflow-y: scroll;
+
+    .go-farm-avatar {
+      margin-top: 2px;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "go-farm"; /* Project id 4698260 */
+  src: url('iconfont.woff2?t=1731219380328') format('woff2'),
+       url('iconfont.woff?t=1731219380328') format('woff'),
+       url('iconfont.ttf?t=1731219380328') format('truetype');
+}
+
+.go-farm {
+  font-family: "go-farm" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.go-farm-badge:before {
+  content: "\e616";
+}
+
+.go-farm-holiday:before {
+  content: "\e615";
+}
+
+.go-farm-blind-box:before {
+  content: "\e614";
+}
+
+.go-farm-birthday:before {
+  content: "\e612";
+}
+
+.go-farm-gift:before {
+  content: "\e613";
+}
+
+.go-farm-balloon:before {
+  content: "\68";
+}
+
+.go-farm-drink:before {
+  content: "\e60f";
+}
+
+.go-farm-photo:before {
+  content: "\e610";
+}
+
+.go-farm-vip:before {
+  content: "\e60d";
+}
+
+.go-farm-cancel:before {
+  content: "\e60c";
+}
+
+.go-farm-avatar:before {
+  content: "\e60b";
+}
+
+.go-farm-mine:before {
+  content: "\e60a";
+}
+
+.go-farm-order:before {
+  content: "\e609";
+}
+
+.go-farm-map:before {
+  content: "\e607";
+}
+
+.go-farm-home:before {
+  content: "\e604";
+}
+

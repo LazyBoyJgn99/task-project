@@ -1,0 +1,114 @@
+{
+  "id": "4698260",
+  "name": "go-farm-icon",
+  "font_family": "go-farm",
+  "css_prefix_text": "go-farm-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "42408878",
+      "name": "徽章",
+      "font_class": "badge",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "42408863",
+      "name": "假日",
+      "font_class": "holiday",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "42408859",
+      "name": "盲盒",
+      "font_class": "blind-box",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "42408862",
+      "name": "生日",
+      "font_class": "birthday",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "42408861",
+      "name": "礼物",
+      "font_class": "gift",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "42408858",
+      "name": "节假日",
+      "font_class": "balloon",
+      "unicode": "68",
+      "unicode_decimal": 104
+    },
+    {
+      "icon_id": "42408857",
+      "name": "饮品",
+      "font_class": "drink",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "42408856",
+      "name": "拍立得",
+      "font_class": "photo",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "42408853",
+      "name": "会员",
+      "font_class": "vip",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "42220559",
+      "name": "取消",
+      "font_class": "cancel",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "42018951",
+      "name": "头像",
+      "font_class": "avatar",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "42018912",
+      "name": "我的",
+      "font_class": "mine",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "42018850",
+      "name": "订单",
+      "font_class": "order",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "42018806",
+      "name": "定位",
+      "font_class": "map",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "42018718",
+      "name": "主页",
+      "font_class": "home",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}

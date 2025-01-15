@@ -1,0 +1,27 @@
+.button-get-phone {
+  background-color: transparent;
+  color: var(
+    --nutui-button-primary-color,
+    var(--nutui-color-primary-text, #ffffff)
+  );
+  background: linear-gradient(
+    135deg,
+    var(--nutui-color-primary-stop-1) 0%,
+    var(--nutui-color-primary-stop-2) 100%
+  );
+  border: var(--nutui-button-border-width, 1px) solid transparent;
+  padding: var(--nutui-button-normal-padding, 0px 16px);
+  width: 320px;
+  height: 48px;
+  border-radius: 6px;
+  font-size: 16px;
+
+  view {
+    line-height: 96rpx;
+  }
+}
+
+.button-get-phone::after {
+  border: none;
+  height: auto;
+}

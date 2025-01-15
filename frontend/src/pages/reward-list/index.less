@@ -1,0 +1,45 @@
+.reward-list {
+  height: 100%;
+  position: relative;
+
+  .nav-bar {
+    background: var(
+      --nutui-tabs-titles-background-color,
+      var(--nutui-gray-3, #f6f6f6)
+    );
+
+    .nut-navbar {
+      background-color: transparent;
+      margin-bottom: 0;
+    }
+  }
+
+  .nut-tabs {
+    height: calc(100% - 91px);
+
+    .nut-tabs-titles {
+      flex-shrink: 0;
+
+      .nut-tabs-titles-item {
+        font-size: 16px;
+      }
+    }
+
+    .nut-tabs-content-wrap {
+      height: 100%;
+      overflow-y: hidden;
+
+      .nut-tabs-content {
+        height: 100%;
+
+        .nut-empty {
+          margin-top: 80px;
+        }
+      }
+    }
+
+    .nut-cell-group-wrap {
+      margin-bottom: 20px;
+    }
+  }
+}
