@@ -63,7 +63,3 @@ backend/*.pid.lock
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 backend/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-# 保密配置文件
-backend/config/*
-
