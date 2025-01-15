@@ -1,16 +1,18 @@
-import { RequestResult } from '@/types/request';
-import Taro from '@tarojs/taro';
-import { removeToken, removeUser } from './user';
+import { RequestResult } from "@/types/request";
+import Taro from "@tarojs/taro";
+import { removeToken, removeUser } from "./user";
 
 interface IRequestOptions {
   hideError?: boolean;
   errorMsg?: string;
 }
 
-export const domain = 'https://gofarm.obs.cn-east-3.myhuaweicloud.com';
-export const apiDomain = 'https://www.gofarm.top';
-const baseUrl = `${apiDomain}/pos`;
-const authorizationPrefix = 'Bearer ';
+export const domain = "https://gofarm.obs.cn-east-3.myhuaweicloud.com";
+// export const apiDomain = 'https://www.gofarm.top';
+// const baseUrl = `${apiDomain}/pos`;
+export const apiDomain = "http://localhost:3100";
+const baseUrl = `${apiDomain}`;
+const authorizationPrefix = "Bearer ";
 
 function baseRequest<T>(
   url: string,
@@ -19,12 +21,12 @@ function baseRequest<T>(
   customOptions?: IRequestOptions
 ) {
   return new Promise<T>((resolve, reject) => {
-    const token = Taro.getStorageSync('access_token');
+    const token = Taro.getStorageSync("access_token");
     Taro.request<RequestResult<T>>({
       url: `${baseUrl}${url}`,
       method,
       header: {
-        authorization: token ? authorizationPrefix + token : '',
+        authorization: token ? authorizationPrefix + token : "",
       },
       ...options,
       success: (requestResult) => {
@@ -39,7 +41,7 @@ function baseRequest<T>(
           // 这里如果直接跳转会阻断request外的catch和finally逻辑，所以用定时器延迟跳转
           setTimeout(() => {
             Taro.navigateTo({
-              url: '/pages/login/index',
+              url: "/pages/login/index",
             });
           }, 500);
           return;
@@ -47,16 +49,16 @@ function baseRequest<T>(
         // 错误提示
         if (!customOptions?.hideError) {
           Taro.showToast({
-            title: customOptions?.errorMsg || '系统错误',
-            icon: 'none',
+            title: customOptions?.errorMsg || "系统错误",
+            icon: "none",
           });
         }
         reject(requestResult);
       },
       fail: (requestResult: TaroGeneral.CallbackResult) => {
         Taro.showToast({
-          title: '网络请求失败',
-          icon: 'none',
+          title: "网络请求失败",
+          icon: "none",
         });
         reject(requestResult);
       },
@@ -66,13 +68,12 @@ function baseRequest<T>(
 
 const request = {
   get: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, 'GET', { data }, options),
+    baseRequest<T>(url, "GET", { data }, options),
   post: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, 'POST', { data }, options),
+    baseRequest<T>(url, "POST", { data }, options),
   patch: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, 'PATCH', { data }, options),
+    baseRequest<T>(url, "PATCH", { data }, options),
   delete: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, 'DELETE', { data }, options),
+    baseRequest<T>(url, "DELETE", { data }, options),
 };
 export default request;
-
