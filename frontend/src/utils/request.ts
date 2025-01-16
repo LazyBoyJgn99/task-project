@@ -1,79 +1,45 @@
-import { RequestResult } from "@/types/request";
-import Taro from "@tarojs/taro";
-import { removeToken, removeUser } from "./user";
+import Taro from '@tarojs/taro';
+import { API_CONFIG } from '@/config/api.config';
 
-interface IRequestOptions {
-  hideError?: boolean;
-  errorMsg?: string;
+interface RequestOptions extends Omit<Taro.request.Option, 'url'> {
+  path: string;
+  mock?: boolean; // 是否强制使用 mock
+  mockData?: any; // mock 数据
 }
 
-export const domain = "https://gofarm.obs.cn-east-3.myhuaweicloud.com";
-// export const apiDomain = 'https://www.gofarm.top';
-// const baseUrl = `${apiDomain}/pos`;
-export const apiDomain = "http://localhost:3100";
-const baseUrl = `${apiDomain}`;
-const authorizationPrefix = "Bearer ";
+export const request = async <T = any>(options: RequestOptions): Promise<T> => {
+  const { path, mock, mockData, ...restOptions } = options;
+  const useMock = mock ?? API_CONFIG.useMock;
+  
+  // 如果使用 mock 且提供了 mock 数据，直接返回
+  if (useMock && mockData) {
+    return Promise.resolve(mockData);
+  }
 
-function baseRequest<T>(
-  url: string,
-  method: string,
-  options: any,
-  customOptions?: IRequestOptions
-) {
-  return new Promise<T>((resolve, reject) => {
-    const token = Taro.getStorageSync("access_token");
-    Taro.request<RequestResult<T>>({
-      url: `${baseUrl}${url}`,
-      method,
+  const baseUrl = useMock ? API_CONFIG.mockBaseUrl : API_CONFIG.baseUrl;
+  
+  try {
+    const token = Taro.getStorageSync('token');
+    const response = await Taro.request({
+      url: `${baseUrl}${path}`,
       header: {
-        authorization: token ? authorizationPrefix + token : "",
+        'Authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json',
+        ...restOptions.header,
       },
-      ...options,
-      success: (requestResult) => {
-        // 如果成功，则返回接口返回数据
-        if (requestResult.statusCode >= 200 && requestResult.statusCode < 300) {
-          resolve(requestResult.data.data);
-          return;
-        }
-        if (requestResult.statusCode === 401) {
-          removeUser();
-          removeToken();
-          // 这里如果直接跳转会阻断request外的catch和finally逻辑，所以用定时器延迟跳转
-          setTimeout(() => {
-            Taro.navigateTo({
-              url: "/pages/login/index",
-            });
-          }, 500);
-          return;
-        }
-        // 错误提示
-        if (!customOptions?.hideError) {
-          Taro.showToast({
-            title: customOptions?.errorMsg || "系统错误",
-            icon: "none",
-          });
-        }
-        reject(requestResult);
-      },
-      fail: (requestResult: TaroGeneral.CallbackResult) => {
-        Taro.showToast({
-          title: "网络请求失败",
-          icon: "none",
-        });
-        reject(requestResult);
-      },
+      ...restOptions,
     });
-  });
-}
 
-const request = {
-  get: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, "GET", { data }, options),
-  post: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, "POST", { data }, options),
-  patch: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, "PATCH", { data }, options),
-  delete: <T>(url: string, data?: any, options?: IRequestOptions) =>
-    baseRequest<T>(url, "DELETE", { data }, options),
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return response.data;
+    }
+
+    throw new Error(response.data?.message || '请求失败');
+  } catch (error) {
+    Taro.showToast({
+      title: error.message || '网络错误',
+      icon: 'none'
+    });
+    throw error;
+  }
 };
-export default request;

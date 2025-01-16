@@ -1,132 +1,110 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Button, Checkbox, NavBar } from '@nutui/nutui-react-taro';
-import { Image, ITouchEvent, Text, View } from '@tarojs/components';
-import { ArrowLeft } from '@nutui/icons-react-taro';
-import { getUserCodeWX } from './pure';
-import { domain } from '@/utils/request';
-import { IUser } from '@/types/user';
-import { setToken, setUser } from '@/utils/user';
+import { View, Input, Button } from '@tarojs/components';
+import { useState } from 'react';
 import Taro from '@tarojs/taro';
-import request from '@/utils/request';
-import ButtonPhone from '@/components/button-phone';
+import { userService } from '@/services/user.service';
+import { LoginParams, UserRole } from '@/types/user.types';
 import './index.less';
 
-const goPrivacyPolicy = (event: ITouchEvent) => {
-  event.stopPropagation();
-  Taro.navigateTo({ url: '/pages/clause-privacy-policy/index' });
-};
+export default function Login() {
+  const [form, setForm] = useState<LoginParams>({
+    phone: '',
+    role: UserRole.CONSUMER // 默认为消费者角色
+  });
 
-export default function Index() {
-  const barHeight = useSelector((state: any) => state.system.barHeight);
-  const [loggedPhone, setLoggedPhone] = useState<string>('');
-  const [isRead, setIsRead] = useState<boolean>(false);
+  const handleLogin = async () => {
+    try {
+      if (!form.phone) {
+        Taro.showToast({
+          title: '请输入手机号',
+          icon: 'none'
+        });
+        return;
+      }
 
-  /**
-   * 获取用户的手机号，可能有也可能还没注册
-   */
-  const getRegistedPhone = async () => {
-    const code = await getUserCodeWX();
-    const phone = await request.get<string>('/user/phone/by-login-code', {
-      code,
-    });
-    setLoggedPhone(phone || '');
+      const { token, user } = await userService.login(form);
+      
+      // 存储登录信息
+      Taro.setStorageSync('token', token);
+      Taro.setStorageSync('user', user);
+
+      // 根据角色跳转到不同页面
+      switch (user.role) {
+        case UserRole.CONSUMER:
+          Taro.reLaunch({ url: '/pages/consumer/home/index' });
+          break;
+        case UserRole.WORKER:
+          Taro.reLaunch({ url: '/pages/worker/task-list/index' });
+          break;
+        case UserRole.ADMIN:
+          Taro.reLaunch({ url: '/pages/admin/user-list/index' });
+          break;
+      }
+    } catch (error) {
+      console.error('登录失败:', error);
+    }
   };
 
-  /**
-   * 进入页面时获取用户在系统中的手机号
-   */
-  useEffect(() => {
-    getRegistedPhone();
-  }, []);
-
-  /**
-   * 登录后把user存入redux
-   */
-  const afterLogin = (user: IUser) => {
-    setUser(user);
-    setToken(user.accessToken as string);
-    Taro.navigateBack();
+  const handleInput = (field: keyof LoginParams, value: string) => {
+    setForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
-  /**
-   * 校验是否阅读隐私政策
-   */
-  const beforeLogin = () => {
-    if (isRead) return true;
-    Taro.showToast({
-      title: '请阅读并同意隐私政策',
-      icon: 'none',
-    });
-    return false;
-  };
-
-  /**
-   * 已经有账号的情况下登录
-   */
-  const login = async () => {
-    if (!beforeLogin()) return;
-    const code = await getUserCodeWX();
-    const user = await request.post<IUser>('/user/login', {
-      code,
-    });
-    afterLogin(user);
-  };
-
-  /**
-   * 没有账号的情况下注册并登录
-   */
-  const registerAndLogin = async (phone: string) => {
-    if (!beforeLogin()) return;
-    const code = await getUserCodeWX();
-    const user = await request.post<IUser>('/user/register-login', {
-      code,
-      phone,
-    });
-    afterLogin(user);
+  const handleRoleChange = (role: UserRole) => {
+    setForm(prev => ({
+      ...prev,
+      role
+    }));
   };
 
   return (
-    <View className="login">
-      <View style={{ height: `${barHeight}px`, width: '100%' }}></View>
-      <NavBar
-        back={<ArrowLeft size={18} />}
-        onBackClick={() =>
-          Taro.redirectTo({ url: '/pages/index/index' })
-        }></NavBar>
-      <View className="title">
-        <Image
-          className="login-title"
-          src={`${domain}/images/login-title.png`}
-        />
-        <View className="title-text-1">国内首家体感式农场</View>
-        <View className="title-text-2">动物作伴，开启一场奇妙的自然旅程！</View>
+    <View className='login'>
+      <View className='login__header'>
+        <View className='login__title'>任务平台</View>
+        <View className='login__subtitle'>登录账号</View>
       </View>
-      <View className="footer">
-        {loggedPhone && (
-          <Button shape="square" type="primary" onClick={login}>
-            手机号一键登录
-          </Button>
-        )}
-        {!loggedPhone && (
-          <ButtonPhone isRead={isRead} onSuccess={registerAndLogin}>
-            <View>手机号一键登录</View>
-          </ButtonPhone>
-        )}
+
+      <View className='login__form'>
+        <View className='login__item'>
+          <View className='login__label'>手机号</View>
+          <Input
+            className='login__input'
+            type='number'
+            placeholder='请输入手机号'
+            value={form.phone}
+            onInput={e => handleInput('phone', e.detail.value)}
+          />
+        </View>
+
+        <View className='login__roles'>
+          <View 
+            className={`login__role ${form.role === UserRole.CONSUMER ? 'login__role--active' : ''}`}
+            onClick={() => handleRoleChange(UserRole.CONSUMER)}
+          >
+            我是消费者
+          </View>
+          <View 
+            className={`login__role ${form.role === UserRole.WORKER ? 'login__role--active' : ''}`}
+            onClick={() => handleRoleChange(UserRole.WORKER)}
+          >
+            我是接单者
+          </View>
+          <View 
+            className={`login__role ${form.role === UserRole.ADMIN ? 'login__role--active' : ''}`}
+            onClick={() => handleRoleChange(UserRole.ADMIN)}
+          >
+            我是管理员
+          </View>
+        </View>
       </View>
-      <View className="clause">
-        <Checkbox
-          checked={isRead}
-          onChange={(val) => setIsRead(val)}
-          label={
-            <>
-              <Text>已阅读并同意</Text>
-              <Text className="clause-link" onClick={goPrivacyPolicy}>
-                《隐私政策》
-              </Text>
-            </>
-          }
-        />
+
+      <Button className='login__button' onClick={handleLogin}>
+        登录
+      </Button>
+
+      <View className='login__register' onClick={() => Taro.navigateTo({ url: '/pages/register/index' })}>
+        还没有账号？立即注册
       </View>
     </View>
   );

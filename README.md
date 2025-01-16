@@ -52,5 +52,4 @@
 
 ## 技术栈
 前端: Taro + React + TypeScript
-后端: Node.js + Express
-数据库: MongoDB
+后端: swagger

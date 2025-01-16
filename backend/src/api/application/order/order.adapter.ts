@@ -37,16 +37,16 @@ export class OrderAdapter {
   ToOrderEntity(commodity: Commodity, user: User, coupon: Coupon) {
     const order = new Order();
     order.commodity = commodity;
-    order.user = user;
+    order.consumer = user;
     order.coupon = coupon;
-    order.status = OrderStatus.UNPAID;
-    order.price = commodity.price;
+    order.status = OrderStatus.PENDING;
+    order.amount = commodity.price;
     return order;
   }
 
   ToEntity(commodityCoupons: [Commodity, Coupon][], user: User) {
     const orderTotal = new OrderTotal();
-    orderTotal.user = user;
+    orderTotal.consumer = user;
     const children = [];
     commodityCoupons.forEach(([commodity, coupon]) => {
       const order = this.ToOrderEntity(commodity, user, coupon);

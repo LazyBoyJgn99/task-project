@@ -1,85 +1,107 @@
-const path = require('path');
+import path from 'path';
+import type { ProcessEnv } from 'process';
+
+declare const process: {
+  env: ProcessEnv;
+  cwd(): string;
+};
+
 const config = {
-  alias: {
-    '@': path.resolve(__dirname, '..', 'src'),
-  },
-  projectName: 'go-farm-pos-frontend',
-  date: '2024-8-29',
-  designWidth: 375,
+  projectName: 'task-project',
+  date: '2024-3-20',
+  designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,
-    828: 1.81 / 2,
-    375: 2 / 1,
+    828: 1.81 / 2
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: ['@tarojs/plugin-html'],
-  defineConstants: {},
+  plugins: [],
+  defineConstants: {
+  },
   copy: {
-    patterns: [],
-    options: {},
+    patterns: [
+    ],
+    options: {
+    }
   },
   framework: 'react',
   compiler: {
     type: 'webpack5',
-    prebundle: { enable: false },
+    prebundle: {
+      enable: false
+    }
   },
   mini: {
-    miniCssExtractPluginOption: {
-      ignoreOrder: true,
+    webpackChain(chain) {
+      chain.merge({
+        module: {
+          rule: {
+            script: {
+              test: /\.[tj]sx?$/,
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [
+                      ['@babel/preset-env', { targets: { browsers: ['last 2 versions', 'ie >= 11'] } }]
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      });
+      chain.resolve.alias
+        .set('@', path.resolve(process.cwd(), 'src'));
     },
     postcss: {
       pxtransform: {
         enable: true,
-        // config: {
-        //   selectorBlackList: ['nut-'],
-        // },
+        config: {
+        }
       },
       url: {
         enable: true,
         config: {
-          limit: 1024, // 设定转换尺寸上限
-        },
-      },
-      cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-        config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
-          generateScopedName: '[name]__[local]___[hash:base64:5]',
-        },
-      },
-    },
+          limit: 1024
+        }
+      }
+    }
   },
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
-    // esnextModules: ['nutui-react'],
+    output: {
+      filename: 'js/[name].[hash:8].js',
+      chunkFilename: 'js/[name].[chunkhash:8].js'
+    },
+    miniCssExtractPluginOption: {
+      ignoreOrder: true,
+      filename: 'css/[name].[hash:8].css',
+      chunkFilename: 'css/[name].[chunkhash:8].css'
+    },
     postcss: {
-      pxtransform: {
-        enable: true,
-        // config: {
-        //   selectorBlackList: ['nut-'],
-        // },
-      },
       autoprefixer: {
         enable: true,
-        config: {},
+        config: {
+        }
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: false,
         config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
-          generateScopedName: '[name]__[local]___[hash:base64:5]',
-        },
-      },
+          namingPattern: 'module',
+          generateScopedName: '[name]__[local]___[hash:base64:5]'
+        }
+      }
     },
-  },
-};
-
-module.exports = function (merge) {
-  if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'));
+    webpackChain(chain) {
+      chain.resolve.alias
+        .set('@', path.resolve(process.cwd(), 'src'))
+    }
   }
-  return merge({}, config, require('./prod'));
-};
+}
+
+export default config;

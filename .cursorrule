@@ -1,0 +1,65 @@
+rules:
+  # TypeScript/React 文件规则
+  - name: "React TypeScript 组件"
+    pattern: "**/*.tsx"
+    language: "typescript"
+    scopes:
+      - "source.tsx"
+    conventions:
+      - "组件使用 PascalCase 命名"
+      - "接口名以 I 开头"
+      - "使用函数组件而不是类组件"
+      - "props 类型定义使用 interface"
+
+  # Less 样式文件规则
+  - name: "Less 样式文件"
+    pattern: "**/*.less"
+    language: "less"
+    scopes:
+      - "source.css.less"
+    conventions:
+      - "使用变量命名遵循 --nutui- 前缀"
+      - "类名使用 kebab-case"
+      - "避免过深的嵌套（最多3层）"
+
+  # 目录结构规则
+  - name: "组件目录结构"
+    pattern: "frontend/src/components/*/"
+    conventions:
+      - "组件目录使用 kebab-case"
+      - "包含 index.tsx 和 index.less"
+      - "组件相关的类型定义在组件文件内"
+
+  # Taro 相关规则
+  - name: "Taro 规范"
+    pattern: "**/*.{tsx,ts}"
+    conventions:
+      - "使用 Taro 提供的组件而不是 HTML 标签"
+      - "遵循小程序开发规范"
+      - "使用 Taro.showToast 等 Taro API"
+
+  # 通用代码风格
+  - name: "代码风格"
+    pattern: "**/*.{tsx,ts,less}"
+    conventions:
+      - "使用2空格缩进"
+      - "文件末尾保留一个空行"
+      - "使用单引号"
+      - "每行最大长度120字符"
+
+  # 命名规范
+  - name: "命名规范"
+    pattern: "**/*"
+    conventions:
+      - "组件文件夹使用 kebab-case"
+      - "组件名使用 PascalCase"
+      - "函数名使用 camelCase"
+      - "常量使用 UPPER_SNAKE_CASE"
+      - "类型和接口使用 PascalCase"
+
+  # Git 规则
+  - ignore:
+    - "node_modules"
+    - "dist"
+    - ".taro"
+    - "*.log" 

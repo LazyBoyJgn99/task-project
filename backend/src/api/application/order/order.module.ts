@@ -1,22 +1,19 @@
 import { Module } from '@nestjs/common';
-import { DomainModule } from '@/api/domain/domain.module';
-import { InfrastructureModule } from '@/api/infrastructure/infrastructure.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Order } from '@/api/domain/order/order.entity';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
-import { OrderAdapter } from './order.adapter';
-import { UserModule } from '../user/user.module';
-import { CouponModule } from '../coupon/coupon.module';
-import { CommodityModule } from '../commodity/commodity.module';
+import { OrderDomainService } from '@/api/domain/order/order.domain.service';
+import { TaskModule } from '../task/task.module';
+import { MockPaymentService } from '@/test/mocks/payment.service.mock';
 
 @Module({
-  controllers: [OrderController],
   imports: [
-    DomainModule,
-    InfrastructureModule,
-    UserModule,
-    CouponModule,
-    CommodityModule,
+    TypeOrmModule.forFeature([Order]),
+    TaskModule,
   ],
-  providers: [OrderService, OrderAdapter],
+  controllers: [OrderController],
+  providers: [OrderService, OrderDomainService, MockPaymentService],
+  exports: [OrderService],
 })
 export class OrderModule {}

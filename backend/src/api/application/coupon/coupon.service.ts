@@ -23,7 +23,7 @@ export class CouponService {
   ) {}
 
   async Add(couponAddDto: CouponAddDto): Promise<void> {
-    const user = await this.userDomainService.Detail(couponAddDto.userId);
+    const user = await this.userDomainService.findById(couponAddDto.userId);
     if (!user) throw new InternalServerErrorException(ERROR_USER_NOT_FOUND);
     const coupon = this.couponAdapter.ToEntityWhenAdd(couponAddDto, user);
     await this.couponDomainService.Add(coupon);

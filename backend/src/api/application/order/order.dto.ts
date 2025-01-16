@@ -1,257 +1,60 @@
-import {
-  IsArray,
-  IsDateString,
-  IsInt,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { UserVo } from '../user/user.dto';
-import { CommodityVo } from '../commodity/commodity.dto';
-import { CouponVo } from '../coupon/coupon.dto';
-import { PageDto } from '@/common/base.dto';
+import { IsString, IsNumber, IsEnum, IsOptional } from 'class-validator';
 import { OrderStatus } from '@/api/domain/order/order.entity';
 
-export class ChooseCommodity {
-  @ApiProperty({
-    description: '商品Id',
-  })
+export class CreateOrderDto {
+  @ApiProperty()
   @IsString()
-  commodityId: string;
-
-  @ApiProperty({
-    description: '优惠券Id',
-  })
-  @IsString()
-  @IsOptional()
-  couponId: string;
-}
-export class OrderAddDto {
-  @ApiProperty({
-    description: '用户Id',
-  })
-  @IsString()
-  userId: string;
-
-  @ApiProperty({
-    description: '选择的商品列表',
-    type: ChooseCommodity,
-    isArray: true,
-  })
-  @IsArray()
-  @Type(() => ChooseCommodity)
-  @ValidateNested({ each: true })
-  chooseCommodityList: ChooseCommodity[];
+  taskId: string;
 }
 
-export class WxCallbackDto {
-  id: string;
-
-  create_time: string;
-
-  event_type: string;
-
-  resource_type: string;
-
-  summary: string;
-
-  resource: {
-    original_type: string;
-
-    algorithm: string;
-
-    ciphertext: string;
-
-    associated_data: string;
-
-    nonce: string;
-  };
-}
-
-export class SuccessPay {
-  @ApiProperty({
-    description: '订单id',
-  })
-  @IsString()
-  orderId: string;
-}
-
-export class SignDto {
-  @ApiProperty({
-    description: '小程序appId',
-  })
-  @IsString()
-  appId: string;
-
-  @ApiProperty({
-    description: '时间戳',
-  })
-  @IsString()
-  timeStamp: string;
-
-  @ApiProperty({
-    description: '不长于32位的随机字符串',
-  })
-  @IsString()
-  nonceStr: string;
-
-  @ApiProperty({
-    description: 'prepay_id=***',
-  })
-  @IsString()
-  package: string;
-}
-
-export class OrderQueryDto {
-  @ApiProperty({
-    description: '用户Id',
-  })
-  @IsString()
-  userId: string;
-}
-
-export class OrderPageDto extends PageDto {
-  @ApiProperty({
-    description: '用户手机号',
-    required: false,
-  })
-  @IsString()
+export class OrderPageDto {
+  @ApiProperty({ required: false, default: 1 })
+  @IsNumber()
   @IsOptional()
-  phone: string;
+  pageNumber?: number = 1;
 
-  @ApiProperty({
-    description: '订单状态',
-    required: false,
-  })
-  @IsString()
+  @ApiProperty({ required: false, default: 10 })
+  @IsNumber()
   @IsOptional()
-  status: OrderStatus;
+  pageSize?: number = 10;
 
-  @ApiProperty({
-    description: '创建开始时间',
-    required: false,
-  })
-  @IsDateString()
+  @ApiProperty({ required: false })
+  @IsEnum(OrderStatus)
   @IsOptional()
-  createStartTime: string;
+  status?: OrderStatus;
 
-  @ApiProperty({
-    description: '创建结束时间',
-    required: false,
-  })
-  @IsDateString()
+  @ApiProperty({ required: false })
   @IsOptional()
-  createEndTime: string;
-
-  @ApiProperty({
-    description: '核销开始时间',
-    required: false,
-  })
-  @IsDateString()
-  @IsOptional()
-  useStartTime: string;
-
-  @ApiProperty({
-    description: '核销结束时间',
-    required: false,
-  })
-  @IsDateString()
-  @IsOptional()
-  useEndTime: string;
-
-  @ApiProperty({
-    description: '门票日期',
-    required: false,
-  })
-  @IsDateString()
-  @IsOptional()
-  ticketDate: string;
-
-  @ApiProperty({
-    description: '门票类型',
-    required: false,
-  })
-  @IsString()
-  @IsOptional()
-  ticketTypes: string;
-
   _userId?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
   _createStartTime?: Date;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
   _createEndTime?: Date;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
   _useStartTime?: Date;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
   _useEndTime?: Date;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
   _commodityIds?: string[];
-}
 
-export class OrderDetailDto {
-  @ApiProperty({
-    description: '总订单Id',
-  })
-  @IsString()
-  id: string;
-}
+  @ApiProperty({ required: false })
+  @IsOptional()
+  orderBy?: string;
 
-export class OrderDetailByChildDto {
-  @ApiProperty({
-    description: '子订单Id',
-  })
-  @IsString()
-  id: string;
-}
-
-export class OrderDetailChildDto {
-  @ApiProperty({
-    description: '子订单Id',
-  })
-  @IsString()
-  id: string;
-}
-
-export class OrderRefundsDto {
-  @ApiProperty({
-    description: '总订单id',
-  })
-  @IsString()
-  orderTotalId: string;
-
-  @ApiProperty({
-    description: '子订单Ids',
-  })
-  @IsArray()
-  @IsString({ each: true })
-  orderIds: string[];
-}
-
-export class OrderCancelDto {
-  @ApiProperty({
-    description: '订单Id',
-  })
-  @IsString()
-  id: string;
-}
-
-export class OrderUseDto {
-  @ApiProperty({
-    description: '订单Id',
-  })
-  @IsString()
-  id: string;
-}
-
-export class OrderUseGrassDto {
-  @ApiProperty({
-    description: '用户Id',
-  })
-  @IsString()
-  id: string;
-
-  @ApiProperty({
-    description: '核销数量',
-  })
-  @IsInt()
-  number: number;
+  @ApiProperty({ required: false })
+  @IsOptional()
+  order?: 'ASC' | 'DESC';
 }
 
 export class OrderVo {
@@ -259,37 +62,73 @@ export class OrderVo {
   id: string;
 
   @ApiProperty()
-  status: string;
+  orderNo: string;
 
   @ApiProperty()
-  user: UserVo;
+  amount: number;
 
   @ApiProperty()
-  commodity: CommodityVo;
+  status: OrderStatus;
 
   @ApiProperty()
-  coupon: CouponVo;
+  task: {
+    id: string;
+    title: string;
+    description: string;
+  };
+
+  @ApiProperty()
+  consumer: {
+    id: string;
+    name: string;
+    phone: string;
+  };
+
+  @ApiProperty({ required: false })
+  worker?: {
+    id: string;
+    name: string;
+    phone: string;
+  };
+
+  @ApiProperty({ required: false })
+  paymentTime?: Date;
+
+  @ApiProperty({ required: false })
+  completionTime?: Date;
+
+  @ApiProperty({ required: false })
+  cancelTime?: Date;
 
   @ApiProperty()
   price: number;
 
-  @ApiProperty()
-  createTime: string;
+  @ApiProperty({ required: false })
+  remarks?: string;
 
-  @ApiProperty()
-  updateTime: string;
+  @ApiProperty({ required: false })
+  refundId?: string;
 
-  @ApiProperty()
-  refundTime: string;
+  @ApiProperty({ required: false })
+  createTime?: string;
 
-  @ApiProperty()
-  useTime: string;
+  @ApiProperty({ required: false })
+  updateTime?: string;
 
-  @ApiProperty()
-  refundId: string;
+  @ApiProperty({ required: false })
+  refundTime?: string;
 
-  @ApiProperty()
-  remarks: string;
+  @ApiProperty({ required: false })
+  useTime?: string;
+
+  @ApiProperty({ required: false })
+  commodity?: any;
+
+  @ApiProperty({ required: false })
+  user?: any;
+
+  @ApiProperty({ required: false })
+  coupon?: any;
 }
 
 export class OrderTotalVo {
@@ -297,37 +136,23 @@ export class OrderTotalVo {
   id: string;
 
   @ApiProperty()
-  user: UserVo;
+  user: any;
 
   @ApiProperty()
   price: number;
 
-  @ApiProperty()
-  prepayId: string;
+  @ApiProperty({ required: false })
+  prepayId?: string;
 
-  @ApiProperty()
-  createTime: string;
+  @ApiProperty({ required: false })
+  createTime?: string;
 
-  @ApiProperty()
-  updateTime: string;
+  @ApiProperty({ required: false })
+  updateTime?: string;
 
-  @ApiProperty()
-  payTime: string;
+  @ApiProperty({ required: false })
+  payTime?: string;
 
   @ApiProperty()
   children: OrderVo[];
-}
-
-export class OrderUpdateRemarksDto {
-  @ApiProperty({
-    description: '订单Id',
-  })
-  @IsString()
-  id: string;
-
-  @ApiProperty({
-    description: '备注',
-  })
-  @IsString()
-  remarks: string;
 }
