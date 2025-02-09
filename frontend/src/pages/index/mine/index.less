@@ -1,0 +1,61 @@
+.mine {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #f7f7f7;
+  overflow-y: scroll;
+
+  .boundary-line {
+    position: relative;
+    margin-top: -16px;
+    image {
+      width: 375px;
+      height: 16px;
+    }
+  }
+
+  .empty {
+    width: 100%;
+    height: 48px;
+  }
+
+  .nut-dialog-content {
+    padding: 20px 12px 12px 12px;
+    margin: 0;
+
+    .line-contact-us {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 48px;
+
+      .button-copy {
+        color: var(--nutui-color-primary);
+      }
+    }
+
+    .line-contact-us + .line-contact-us {
+      margin-top: 20px;
+    }
+  }
+
+  .nut-dialog-footer {
+    .nut-button {
+      height: 40px;
+      margin-top: 12px;
+    }
+  }
+
+  .nut-dialog {
+    padding: 32px 24px;
+
+    .nut-dialog-header {
+      font-weight: 600;
+    }
+
+    .nut-dialog-content {
+      font-weight: 600;
+    }
+  }
+}

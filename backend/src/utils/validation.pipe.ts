@@ -1,3 +1,4 @@
+import { strategys } from '@/api/domain/coupon/coupon.entity';
 import { NewDate } from './time';
 import {
   registerDecorator,
@@ -27,6 +28,40 @@ export function IsCustomDateFormat(validationOptions?: ValidationOptions) {
         },
         defaultMessage(args: ValidationArguments) {
           return `${args.property} must match one of the following formats: "YY-MM-DD", "WW-D", or "DD"`;
+        },
+      },
+    });
+  };
+}
+
+/**
+ * 自定义优惠策略验证器
+ * 举例：七折           满100减30
+ *      discount-70   full-100-reduce-30
+ */
+export function IsCustomStrategyFormat(validationOptions?: ValidationOptions) {
+  return function (object: object, propertyName: string) {
+    registerDecorator({
+      name: 'isCustomStrategyFormat',
+      target: object.constructor,
+      propertyName: propertyName,
+      options: validationOptions,
+      validator: {
+        validate(value: any) {
+          if (typeof value !== 'string') return false;
+
+          const passingTimes = strategys.reduce((sum, strategy) => {
+            if (strategy.check(value)) {
+              return sum + 1;
+            } else {
+              return sum;
+            }
+          }, 0);
+
+          return passingTimes > 0;
+        },
+        defaultMessage(args: ValidationArguments) {
+          return `${args.property} must match one of the following formats: "discount-70" or "full-100-reduce-30"`;
         },
       },
     });

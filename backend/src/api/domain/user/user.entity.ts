@@ -1,10 +1,10 @@
-// import { COUPON_MAP_VIP } from '../coupon/coupon.entity';
-// import { GIFT_MAP_VIP } from '../gift/gift.entity';
+import { COUPON_MAP_VIP } from '../coupon/coupon.entity';
+import { GIFT_MAP_VIP } from '../gift/gift.entity';
 
 // 类
 export { User };
 // 常量
-// export { VIP_LEVEL_REWARD_MAP };
+export { VIP_LEVEL_REWARD_MAP };
 // 类型
 export { EnumGender, GiftType };
 
@@ -78,16 +78,6 @@ class User {
     return user;
   }
 }
-export enum UserRole {
-  ADMIN = 'admin',     // 管理员
-  CONSUMER = 'consumer', // 消费者
-  WORKER = 'worker'    // 接单者
-}
-
-export enum UserStatus {
-  ACTIVE = 'active',   // 正常
-  BANNED = 'banned'    // 禁用
-}
 
 enum EnumGender {
   /**
@@ -132,89 +122,89 @@ enum GiftType {
   COUPON = 'coupon',
 }
 
-// const VIP_LEVEL_REWARD_MAP = {
-//   [VIP_LEVEL.LEVAL_4]: [
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_KEEPSAKE,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_VIP_BADGE,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_BLIND_BOX,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_GROUP_PHOTO,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_DRINK,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_DRINK,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_ACTIVITY_TICKET,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_ACTIVITY_TICKET,
-//     },
-//     {
-//       type: GiftType.COUPON,
-//       ...COUPON_MAP_VIP.COUPON_HOLIDAY_ENJOY,
-//     },
-//   ],
-//   [VIP_LEVEL.LEVAL_3]: [
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_KEEPSAKE,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_VIP_BADGE,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_BLIND_BOX,
-//     },
+const VIP_LEVEL_REWARD_MAP = {
+  [VIP_LEVEL.LEVAL_4]: [
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_KEEPSAKE,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_VIP_BADGE,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_BLIND_BOX,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_GROUP_PHOTO,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_DRINK,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_DRINK,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_ACTIVITY_TICKET,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_ACTIVITY_TICKET,
+    },
+    {
+      type: GiftType.COUPON,
+      ...COUPON_MAP_VIP.COUPON_HOLIDAY_ENJOY,
+    },
+  ],
+  [VIP_LEVEL.LEVAL_3]: [
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_KEEPSAKE,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_VIP_BADGE,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_BLIND_BOX,
+    },
 
-//     {
-//       type: GiftType.COUPON,
-//       ...COUPON_MAP_VIP.COUPON_HOLIDAY_ENJOY,
-//     },
-//   ],
-//   [VIP_LEVEL.LEVAL_2]: [
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_KEEPSAKE,
-//     },
-//     {
-//       type: GiftType.GIFT,
-//       ...GIFT_MAP_VIP.GIFT_VIP_BADGE,
-//     },
-//   ],
-//   [VIP_LEVEL.LEVAL_1]: [],
-// };
+    {
+      type: GiftType.COUPON,
+      ...COUPON_MAP_VIP.COUPON_HOLIDAY_ENJOY,
+    },
+  ],
+  [VIP_LEVEL.LEVAL_2]: [
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_KEEPSAKE,
+    },
+    {
+      type: GiftType.GIFT,
+      ...GIFT_MAP_VIP.GIFT_VIP_BADGE,
+    },
+  ],
+  [VIP_LEVEL.LEVAL_1]: [],
+};
 
-// export const VIP_LEVEL_BIRTHDAY_REWARD_MAP = {
-//   [VIP_LEVEL.LEVAL_4]: {
-//     type: GiftType.COUPON,
-//     ...COUPON_MAP_VIP.COUPON_PERCENTAGE_50,
-//   },
-//   [VIP_LEVEL.LEVAL_3]: {
-//     type: GiftType.COUPON,
-//     ...COUPON_MAP_VIP.COUPON_PERCENTAGE_70,
-//   },
-//   [VIP_LEVEL.LEVAL_2]: {
-//     type: GiftType.COUPON,
-//     ...COUPON_MAP_VIP.COUPON_PERCENTAGE_85,
-//   },
-//   [VIP_LEVEL.LEVAL_1]: null,
-// };
+export const VIP_LEVEL_BIRTHDAY_REWARD_MAP = {
+  [VIP_LEVEL.LEVAL_4]: {
+    type: GiftType.COUPON,
+    ...COUPON_MAP_VIP.COUPON_PERCENTAGE_50,
+  },
+  [VIP_LEVEL.LEVAL_3]: {
+    type: GiftType.COUPON,
+    ...COUPON_MAP_VIP.COUPON_PERCENTAGE_70,
+  },
+  [VIP_LEVEL.LEVAL_2]: {
+    type: GiftType.COUPON,
+    ...COUPON_MAP_VIP.COUPON_PERCENTAGE_85,
+  },
+  [VIP_LEVEL.LEVAL_1]: null,
+};

@@ -1,14 +1,17 @@
-import { WeChatPayModuleOptions } from 'nest-wechatpay-node-v3';
-import configuration from './configuration';
+import * as fs from 'fs';
+import configuration from 'config/configuration';
 
-const { appId, mchId, serialNo, privateKey, apiV3Key } = configuration().wechat;
-// TODO 需要配置公钥
-export default {
-  useFactory: (): WeChatPayModuleOptions => ({
-    appid: appId,
-    mchid: mchId,
-    serial_no: serialNo,
-    privateKey: Buffer.from(privateKey),
-    publicKey: Buffer.from(privateKey),
-  }),
+const config = {
+  useFactory: async () => {
+    return {
+      appid: configuration.wechat.appId,
+      mchid: configuration.wechat.mchId,
+      publicKey: fs.readFileSync('config/apiclient_cert.pem'),
+      privateKey: fs.readFileSync('config/apiclient_key.pem'),
+      key: configuration.wechat.apiV3Key,
+      serial_no: configuration.wechat.serialNo,
+    };
+  },
 };
+
+export default config;

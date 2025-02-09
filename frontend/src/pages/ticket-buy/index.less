@@ -1,0 +1,185 @@
+.ticket-buy {
+  width: 375px;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: scroll;
+
+  .nut-dialog {
+    padding: 30px 24px;
+  }
+
+  .nut-dialog-header {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .nut-dialog-content {
+    margin: 10px 0 16px 0;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .nut-dialog-footer {
+    margin-top: 8px;
+
+    .nut-button {
+      height: 40px;
+    }
+  }
+
+  .nut-calendar-sub-title {
+    visibility: hidden;
+  }
+
+  .nut-calendar-sub-title {
+    padding: 0;
+  }
+
+  .nut-popup-title-right {
+    visibility: hidden;
+  }
+
+  .nut-calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .calendar-price {
+    font-size: 10px;
+    color: var(--nutui-color-primary);
+  }
+
+  .calendar-null {
+    font-size: 10px;
+    color: #bfbfbf;
+  }
+
+  .nut-calendar-day-active {
+    .calendar-price {
+      color: white;
+    }
+  }
+
+  .nut-calendar-day-info-bottom {
+    position: static;
+    margin-top: 2px;
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  .ticket-buy-cell {
+    .nut-cell-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .nut-cell-description {
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .price-ticket {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--nutui-color-primary);
+    }
+  }
+
+  .select-date-box {
+    width: 100%;
+    display: flex;
+
+    .nut-badge {
+      width: 100%;
+    }
+
+    .nut-badge + .nut-badge {
+      margin-left: 8px;
+    }
+
+    .nut-cell-description {
+      white-space: nowrap;
+    }
+
+    .nut-cell {
+      border: transparent solid 1px;
+      font-size: 28rpx;
+      padding: 26rpx 16rpx;
+    }
+
+    .selected {
+      border: var(--nutui-color-primary) solid 1px;
+    }
+
+    .nut-badge-icon {
+      border-radius: 4px;
+      top: 10px;
+      right: 0;
+    }
+
+    .specify-date-title {
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-left: 4px;
+      }
+    }
+  }
+  .ticket-buy-cell {
+    line-height: 30px;
+
+    .price-ticket {
+      text-align: right;
+      font-size: 16px;
+    }
+
+    .input {
+      height: 30px;
+      display: flex;
+      align-items: flex-start;
+    }
+  }
+
+  .empty {
+    width: 100%;
+    height: 60px;
+  }
+
+  .bottom-box {
+    width: calc(100% - 32px);
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    z-index: 10;
+
+    .total-price {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .total-price-number {
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--nutui-color-primary);
+      }
+
+      .nut-button {
+        font-weight: 600;
+        height: 80rpx;
+      }
+    }
+
+    .empty {
+      width: 100%;
+      height: 34px;
+    }
+  }
+}

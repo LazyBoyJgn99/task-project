@@ -1,0 +1,38 @@
+.coupon-use {
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+
+  .bottom-box {
+    width: calc(100% - 32px);
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    z-index: 10;
+
+    .total-price {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .total-price-number {
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--nutui-color-primary);
+      }
+
+      .nut-button {
+        height: 40px;
+        font-weight: 600;
+      }
+    }
+
+    .empty {
+      width: 100%;
+      height: 34px;
+    }
+  }
+}

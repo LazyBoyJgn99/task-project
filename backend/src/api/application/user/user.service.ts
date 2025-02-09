@@ -7,7 +7,7 @@ import {
 import { UserDomainService } from '@/api/domain/user/user.domain.service';
 import { WechatClient } from '@/api/infrastructure/wechat/wechat.client';
 import { User } from '@/api/domain/user/user.entity';
-// import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { UserAdapter } from './user.adapter';
 import {
   ManagerLoginDto,
@@ -54,10 +54,10 @@ export class UserService {
     const oldUser = await this.userDomainService.Detail(userUpdateDto.id);
     const newUser = this.userAdapter.ToEntityWhenUpdate(oldUser, userUpdateDto);
     await this.userDomainService.Update(newUser);
-    // // 如果是第一次修改生日，判断是否需要发放优惠券
-    // if (!oldUser.birthday && newUser.birthday) {
-    //   await this.userDomainService.CheckBirthdayRewardAndGenerate(newUser);
-    // }
+    // 如果是第一次修改生日，判断是否需要发放优惠券
+    if (!oldUser.birthday && newUser.birthday) {
+      await this.userDomainService.CheckBirthdayRewardAndGenerate(newUser);
+    }
   }
 
   async QueryPhoneByPhoneCode(code: string): Promise<string> {
@@ -116,8 +116,8 @@ export class UserService {
     return this.userAdapter.ToVo(user, accessToken);
   }
 
-  // @Cron(CronExpression.EVERY_1ST_DAY_OF_MONTH_AT_MIDNIGHT)
-  // async GenerateBirthdayRewardEveryMonth() {
-  //   await this.userDomainService.GenerateBirthdayReward();
-  // }
+  @Cron(CronExpression.EVERY_1ST_DAY_OF_MONTH_AT_MIDNIGHT)
+  async GenerateBirthdayRewardEveryMonth() {
+    await this.userDomainService.GenerateBirthdayReward();
+  }
 }

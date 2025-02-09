@@ -1,0 +1,119 @@
+.mine-card-user {
+  position: relative;
+  width: 343px;
+  height: 133px;
+  margin: auto;
+  margin-top: 42px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  image {
+    position: absolute;
+    width: 343px;
+    height: 133px;
+  }
+
+  .user-avatar {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px 24px 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nut-button-small {
+      padding: 32rpx 24rpx;
+    }
+
+    .nut-button-wrap {
+      font-size: 28rpx;
+      font-weight: 500;
+    }
+
+    .nut-button-wrap {
+      font-weight: 600;
+    }
+
+    .nut-avatar {
+      background-color: #fff !important;
+    }
+    .user-info-box {
+      display: flex;
+      align-items: center;
+
+      .nut-avatar {
+        height: 96rpx;
+        width: 96rpx;
+
+        text {
+          font-size: 44rpx;
+        }
+      }
+
+      .nut-avatar-round {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .user-info {
+        margin-left: 12px;
+        font-weight: 500;
+
+        .user-name {
+          font-size: 16px;
+        }
+
+        .user-level {
+          font-size: 12px;
+          font-weight: 500;
+          margin-top: 4px;
+          color: var(--nutui-color-primary);
+        }
+      }
+    }
+  }
+
+  .unlogin {
+    .user-info {
+      font-size: 20px;
+    }
+
+    .user-level {
+      margin-top: 4px !important;
+      font-size: 14px !important;
+    }
+  }
+
+  .user-points {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 24px 28px 24px;
+    font-size: 12px;
+
+    .points-number {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 14px;
+
+      .points-text {
+        margin-left: 24px;
+      }
+    }
+
+    image {
+      width: 20px;
+      height: 20px;
+      margin-top: -8px;
+    }
+  }
+}

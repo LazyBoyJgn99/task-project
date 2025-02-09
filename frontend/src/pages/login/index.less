@@ -1,102 +1,75 @@
 .login {
-  min-height: 100vh;
-  background: #f5f5f5;
-  padding: 32px;
+  width: 375px;
+  height: 100%;
+  position: relative;
 
-  &__header {
-    text-align: center;
-    margin-bottom: 48px;
+  .nut-navbar {
+    background-color: transparent;
   }
 
-  &__title {
-    font-size: 48px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 16px;
-  }
-
-  &__subtitle {
-    font-size: 32px;
-    color: #666;
-  }
-
-  &__form {
-    background: #fff;
-    padding: 32px;
-    border-radius: 16px;
-    margin-bottom: 32px;
-  }
-
-  &__item {
-    margin-bottom: 24px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &__label {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 16px;
-  }
-
-  &__input {
+  .title {
     width: 100%;
-    height: 88px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    padding: 0 24px;
-    font-size: 28px;
-    color: #333;
-  }
-
-  &__roles {
     display: flex;
-    justify-content: space-between;
-    margin-top: 32px;
-  }
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
 
-  &__role {
-    flex: 1;
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    font-size: 28px;
-    color: #666;
-    background: #f5f5f5;
-    border-radius: 8px;
-    margin: 0 8px;
-
-    &:first-child {
-      margin-left: 0;
+    .login-title {
+      width: 208px;
+      height: 57px;
     }
 
-    &:last-child {
-      margin-right: 0;
+    .title-text-1 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 32px;
     }
 
-    &--active {
-      color: #fff;
-      background: #1890ff;
+    .title-text-2 {
+      font-size: 13px;
+      color: var(--app-gray-text-3);
+      margin-top: 8px;
     }
   }
 
-  &__button {
+  .footer {
+    position: absolute;
+    bottom: 120px;
     width: 100%;
-    height: 88px;
-    line-height: 88px;
-    text-align: center;
-    font-size: 32px;
-    color: #fff;
-    background: #1890ff;
-    border-radius: 8px;
-    margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
+
+    .nut-button {
+      width: 640rpx;
+      height: 96rpx;
+      line-height: 96rpx;
+      font-size: 32rpx;
+      margin-top: 20px;
+      border-radius: 6px;
+
+      view {
+        height: 96rpx;
+        line-height: 96rpx;
+      }
+    }
   }
 
-  &__register {
-    text-align: center;
-    font-size: 28px;
-    color: #1890ff;
+  .clause {
+    position: absolute;
+    bottom: 32px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--nutui-color-primary);
+
+    --nut-icon-width: 14px;
+
+    .nut-checkbox-label {
+      color: var(--app-gray-text-1);
+    }
+
+    .clause-link {
+      color: var(--nutui-color-primary);
+    }
   }
 }

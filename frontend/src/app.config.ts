@@ -1,28 +1,31 @@
 export default defineAppConfig({
   pages: [
-    // 公共页面
+    'pages/index/index',
     'pages/login/index',
-    'pages/register/index',
-
-    // 消费者端
-    'pages/consumer/home/index',
-    'pages/consumer/profile-edit/index',
-    'pages/consumer/task-publish/index',
-    'pages/consumer/task-history/index',
-    'pages/consumer/task-detail/index',
-
-    // 接任务端
-    'pages/worker/task-list/index',
-    'pages/worker/task-detail/index',
-
-    // 管理员端
-    'pages/admin/user-list/index',
-    'pages/admin/order-list/index'
+    'pages/ticket-notice/index',
+    'pages/ticket-buy/index',
+    'pages/ticket-use/index',
+    'pages/order-review/index',
+    'pages/order-detail/index',
+    'pages/user-update/index',
+    'pages/clause-list/index',
+    'pages/clause-privacy-policy/index',
+    'pages/clause-farm-notice/index',
+    'pages/clause-disclaimers/index',
+    'pages/about-us/index',
+    'pages/activity-blind-box/index',
+    'pages/activity-curriculum/index',
+    'pages/activity-cooperation/index',
+    'pages/activity-all-day-ticket/index',
+    'pages/reward-list/index',
+    'pages/reward-detail/index',
+    'pages/vip-center/index',
+    'pages/coupon-use/index',
   ],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: '任务平台',
-    navigationBarTextStyle: 'black'
-  }
+    navigationBarTitleText: 'WeChat',
+    navigationBarTextStyle: 'black',
+  },
 });

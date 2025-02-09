@@ -1,13 +1,13 @@
-// import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-// const config: TypeOrmModuleOptions = {
-//   type: 'mysql',
-//   host: '101.43.99.171',
-//   port: 3306,
-//   username: 'farm_pos',
-//   password: 'yf7AR5i4TKRpSrjX',
-//   database: 'farm_pos',
-//   synchronize: true,
-//   autoLoadEntities: true,
-// };
-// export default config;
+const config: TypeOrmModuleOptions = {
+  type: 'mysql',
+  host: '124.221.112.227',
+  port:  3306,
+  username: 'task',
+  password: 'XnbhmjyCpxasnafR',
+  database: 'task',
+  autoLoadEntities: true,
+  synchronize: true,
+};
+export default config;
