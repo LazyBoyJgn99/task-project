@@ -7,6 +7,12 @@ interface RequestOptions extends Omit<Taro.request.Option, 'url'> {
   mockData?: any; // mock 数据
 }
 
+interface ApiResponse<T> {
+  code: number;
+  message: string;
+  data: T;
+}
+
 export const request = async <T = any>(options: RequestOptions): Promise<T> => {
   const { path, mock, mockData, ...restOptions } = options;
   const useMock = mock ?? API_CONFIG.useMock;
@@ -20,7 +26,7 @@ export const request = async <T = any>(options: RequestOptions): Promise<T> => {
   
   try {
     const token = Taro.getStorageSync('token');
-    const response = await Taro.request({
+    const response = await Taro.request<ApiResponse<T>>({
       url: `${baseUrl}${path}`,
       header: {
         'Authorization': token ? `Bearer ${token}` : '',
@@ -31,7 +37,13 @@ export const request = async <T = any>(options: RequestOptions): Promise<T> => {
     });
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      return response.data;
+      const { code, message, data } = response.data;
+      
+      if (code === 200) {
+        return data;
+      }
+      
+      throw new Error(message || '请求失败');
     }
 
     throw new Error(response.data?.message || '请求失败');

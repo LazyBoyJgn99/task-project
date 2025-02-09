@@ -5,7 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { TaskModule } from './api/application/task/task.module';
 import { UserModule } from './api/application/user/user.module';
 import { AdminModule } from './api/application/admin/admin.module';
-import { OrderModule } from './api/application/order/order.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -24,7 +23,6 @@ import configuration from './config/configuration';
     UserModule,
     TaskModule,
     AdminModule,
-    OrderModule,
   ],
 })
 export class AppModule {}

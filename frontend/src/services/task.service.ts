@@ -67,7 +67,6 @@ export const taskService = {
       path: '/task',
       method: 'POST',
       data: params,
-      mock: true,
       mockData: {
         id: 'mock-task-' + Date.now(),
         ...params,
@@ -86,7 +85,6 @@ export const taskService = {
       path: '/task/my-published',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: {
         total: mockTasks.length,
         items: mockTasks
@@ -100,7 +98,6 @@ export const taskService = {
       path: '/task/my-accepted',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: {
         total: 1,
         items: [mockTasks[1]]
@@ -114,7 +111,6 @@ export const taskService = {
       path: '/task/detail',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: mockTasks[0]
     });
   },
@@ -125,7 +121,6 @@ export const taskService = {
       path: '/task/accept',
       method: 'PUT',
       data: { taskId },
-      mock: true,
       mockData: {
         ...mockTasks[0],
         status: TaskStatus.IN_PROGRESS,
@@ -140,7 +135,6 @@ export const taskService = {
       path: '/task/complete',
       method: 'PUT',
       data: { taskId },
-      mock: true,
       mockData: {
         ...mockTasks[0],
         status: TaskStatus.COMPLETED
@@ -154,7 +148,6 @@ export const taskService = {
       path: '/task/cancel',
       method: 'PUT',
       data: { taskId },
-      mock: true,
       mockData: {
         ...mockTasks[0],
         status: TaskStatus.CANCELLED

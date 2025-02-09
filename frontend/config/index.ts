@@ -1,8 +1,6 @@
 import path from 'path';
-import type { ProcessEnv } from 'process';
 
 declare const process: {
-  env: ProcessEnv;
   cwd(): string;
 };
 

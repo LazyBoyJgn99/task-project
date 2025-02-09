@@ -1,15 +1,15 @@
 // 用户角色
 export enum UserRole {
-  ADMIN = 'ADMIN',
-  CONSUMER = 'CONSUMER',
-  WORKER = 'WORKER'
+  ADMIN = 'admin',
+  CONSUMER = 'consumer',
+  WORKER = 'worker'
 }
 
 // 用户状态
 export enum UserStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-  BANNED = 'BANNED'
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+  BANNED = 'banned'
 }
 
 // 用户信息
@@ -33,7 +33,7 @@ export interface LoginParams {
 
 // 登录返回结果
 export interface LoginResult {
-  token: string;
+  access_token: string;
   user: User;
 }
 

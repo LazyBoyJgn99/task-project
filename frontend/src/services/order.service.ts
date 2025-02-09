@@ -120,7 +120,6 @@ export const orderService = {
       path: '/order',
       method: 'POST',
       data: params,
-      mock: true,
       mockData: {
         id: 'mock-order-' + Date.now(),
         orderNo: 'ORDER' + Date.now(),
@@ -141,7 +140,6 @@ export const orderService = {
       path: '/order/my-consumer',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: {
         total: mockOrders.length,
         items: mockOrders,
@@ -157,7 +155,6 @@ export const orderService = {
       path: '/order/my-worker',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: {
         total: mockOrders.length,
         items: mockOrders,
@@ -173,7 +170,6 @@ export const orderService = {
       path: '/order/pay',
       method: 'PUT',
       data: { orderId },
-      mock: true,
       mockData: {
         ...mockOrders[0],
         status: OrderStatus.PAID,
@@ -189,7 +185,6 @@ export const orderService = {
       path: '/order/complete',
       method: 'PUT',
       data: { orderId },
-      mock: true,
       mockData: {
         ...mockOrders[0],
         status: OrderStatus.COMPLETED,
@@ -205,7 +200,6 @@ export const orderService = {
       path: '/order/cancel',
       method: 'PUT',
       data: { orderId },
-      mock: true,
       mockData: {
         ...mockOrders[0],
         status: OrderStatus.CANCELLED,
@@ -221,7 +215,6 @@ export const orderService = {
       path: '/order/refund',
       method: 'PUT',
       data: { orderId },
-      mock: true,
       mockData: {
         ...mockOrders[0],
         status: OrderStatus.REFUNDED,

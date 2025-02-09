@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Body, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Put, Body, Query, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { TaskService } from './task.service';
 import { 
@@ -19,43 +19,74 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: '创建任务' })
   @Roles(UserRole.CONSUMER)
   async create(@Body() createTaskDto: CreateTaskDto, @CurrentUser() user) {
-    return await this.taskService.create(createTaskDto, user);
+    const task = await this.taskService.create(createTaskDto, user);
+    return {
+      code: HttpStatus.OK,
+      message: '创建成功',
+      data: task
+    };
   }
 
   @Get('my-published')
   @ApiOperation({ summary: '我发布的任务' })
   @Roles(UserRole.CONSUMER)
   async getMyPublished(@Query() pageDto: TaskPageDto, @CurrentUser() user) {
-    return await this.taskService.getMyPublished(pageDto, user);
+    const result = await this.taskService.getMyPublished(pageDto, user);
+    return {
+      code: HttpStatus.OK,
+      message: '查询成功',
+      data: result
+    };
   }
 
   @Get('my-accepted')
   @ApiOperation({ summary: '我接到的任务' })
   @Roles(UserRole.WORKER)
   async getMyAccepted(@Query() pageDto: TaskPageDto, @CurrentUser() user) {
-    return await this.taskService.getMyAccepted(pageDto, user);
+    const result = await this.taskService.getMyAccepted(pageDto, user);
+    return {
+      code: HttpStatus.OK,
+      message: '查询成功',
+      data: result
+    };
   }
 
   @Get('detail')
   @ApiOperation({ summary: '任务详情' })
   async getDetail(@Query() detailDto: TaskDetailDto) {
-    return await this.taskService.getDetail(detailDto);
+    const task = await this.taskService.getDetail(detailDto);
+    return {
+      code: HttpStatus.OK,
+      message: '查询成功',
+      data: task
+    };
   }
 
   @Put('accept')
   @ApiOperation({ summary: '接受任务' })
   @Roles(UserRole.WORKER)
   async accept(@Body('taskId') taskId: string, @CurrentUser() user) {
-    return await this.taskService.accept(taskId, user);
+    const task = await this.taskService.accept(taskId, user);
+    return {
+      code: HttpStatus.OK,
+      message: '接受成功',
+      data: task
+    };
   }
 
   @Put('complete')
   @ApiOperation({ summary: '完成任务' })
   @Roles(UserRole.WORKER)
   async complete(@Body('taskId') taskId: string, @CurrentUser() user) {
-    return await this.taskService.complete(taskId, user);
+    const task = await this.taskService.complete(taskId, user);
+    return {
+      code: HttpStatus.OK,
+      message: '完成成功',
+      data: task
+    };
   }
 } 

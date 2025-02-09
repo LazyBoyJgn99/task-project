@@ -75,7 +75,6 @@ export const adminService = {
       path: '/admin/users',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: mockUsers
     });
   },
@@ -86,7 +85,6 @@ export const adminService = {
       path: '/admin/users/update',
       method: 'PUT',
       data: params,
-      mock: true,
       mockData: {
         ...mockUsers[0],
         status: params.status
@@ -100,7 +98,6 @@ export const adminService = {
       path: '/admin/tasks',
       method: 'GET',
       data: params,
-      mock: true,
       mockData: mockTasks
     });
   }

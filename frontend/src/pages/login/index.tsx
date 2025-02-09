@@ -20,11 +20,9 @@ export default function Login() {
         });
         return;
       }
-
-      const { token, user } = await userService.login(form);
-      
+      const { access_token, user } = await userService.login(form);
       // 存储登录信息
-      Taro.setStorageSync('token', token);
+      Taro.setStorageSync('token', access_token);
       Taro.setStorageSync('user', user);
 
       // 根据角色跳转到不同页面

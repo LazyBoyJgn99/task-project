@@ -37,16 +37,16 @@ const mockUsers = {
 class UserService {
   // 登录
   async login(params: LoginParams): Promise<LoginResult> {
-    return request<LoginResult>({
-      path: '/user/login',
-      method: 'POST',
-      data: params,
-      mock: true,
-      mockData: {
-        token: 'mock-token-' + params.role,
-        user: mockUsers[params.role]
-      }
-    });
+    const res = request<LoginResult>({
+        path: '/user/login',
+        method: 'POST',
+        data: params,
+        mockData: {
+          token: 'mock-token-' + params.role,
+          user: mockUsers[params.role]
+        }
+      })
+    return res;
   }
 
   // 注册
@@ -55,7 +55,6 @@ class UserService {
       path: '/user/register',
       method: 'POST',
       data: params,
-      mock: true,
       mockData: {
         token: 'mock-token-' + params.role,
         user: {
@@ -72,7 +71,6 @@ class UserService {
     return request<User>({
       path: '/user/info',
       method: 'GET',
-      mock: true,
       mockData: mockUsers[UserRole.CONSUMER]
     });
   }
@@ -83,7 +81,6 @@ class UserService {
       path: '/user/update',
       method: 'PUT',
       data: params,
-      mock: true,
       mockData: {
         ...mockUsers[UserRole.CONSUMER],
         ...params
@@ -97,7 +94,6 @@ class UserService {
       path: '/admin/user',
       method: 'PUT',
       data: params,
-      mock: true,
       mockData: {
         ...mockUsers[UserRole.CONSUMER],
         ...params,
